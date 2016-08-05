@@ -39,7 +39,6 @@ public class Interactor {
 
     public Observable<LoginResponse> getShareObservable(String newCode){
         ShareCodeRxSource shareCodeRxSource = new ShareCodeRxSource();
-
         return shareCodeRxSource.shareCodeObservable(newCode);
     }
 
