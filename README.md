@@ -14,7 +14,7 @@ External dependencies used:
 For the app I have used the model view presenter (MVP) design pattern with elements of Clean architecture.
 
 <h4>Model</h4>
-The model/data layer consists of an SQlite database and a RetroFit HTTP client which retrieves data from an SQL Database through the RESTful API I have built in PHP (See 'SharedShopper API' repository). (In clean architecture these are the Entities).
+The model/data layer consists of an SQLite database and a RetroFit HTTP client. The retrofit client retrieves data from a server side SQL Database through calls to the RESTful API I have built in PHP (See 'SharedShopper API' repository). (In clean architecture these are the Entities).
 
 I have used an Interactor layer inbetween the model and presenter layers for further abstraction and to help with future testing, this contains the app specific business logic. 
 
