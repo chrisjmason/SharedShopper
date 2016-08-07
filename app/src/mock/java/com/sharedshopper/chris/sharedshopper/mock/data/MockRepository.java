@@ -3,11 +3,10 @@ package com.sharedshopper.chris.sharedshopper.mock.data;
 import java.util.ArrayList;
 
 
-import data.ItemRepositoryInterface;
+
+import data.repos.item.ItemRepositoryInterface;
 import utility.BasePresenterInterface;
-import utility.CodeUtil;
-import utility.DateUtil;
-import utility.Item;
+import utility.pojo.Item;
 
 public class MockRepository implements ItemRepositoryInterface {
 
@@ -17,6 +16,11 @@ public class MockRepository implements ItemRepositoryInterface {
     public MockRepository(BasePresenterInterface presenter){
         this.presenter = presenter;
         data = MockDb.getInstance();
+    }
+
+    @Override
+    public void getLocalData() {
+
     }
 
     @Override
