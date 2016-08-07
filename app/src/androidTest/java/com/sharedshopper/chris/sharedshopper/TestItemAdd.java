@@ -16,7 +16,6 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -35,21 +34,6 @@ public class TestItemAdd {
     public void clickAdd_opensAddItemPage(){
         onView(withId(R.id.fab_new_item)).perform(click());
         onView(withId(R.id.item_add_titletext)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void clickAdd_addItemWithBothAndCheck(){
-        String testTitle = "Item title for test";
-        String testDesc = "Item desc for test";
-
-        onView(withId(R.id.fab_new_item)).perform(click());
-
-        onView(withId(R.id.item_add_titletext)).perform(typeText(testTitle));
-        onView(withId(R.id.item_add_desctext)).perform(typeText(testDesc),closeSoftKeyboard());
-        onView(withId(R.id.fab_add_ok)).perform(click());
-
-        onView(withId(R.id.item_recycler_view)).check(matches(hasDescendant(withText(testTitle))));
-        onView(withId(R.id.item_recycler_view)).check(matches(hasDescendant(withText(testDesc))));
     }
 
     @Test
