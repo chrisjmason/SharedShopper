@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.sharedshopper.chris.sharedshopper.R;
 
+import data.sharedpref.SharedPrefHelper;
 import itemsoverview.ItemOverviewActivity;
+import utility.MyApplication;
 
 public class LoginFragment extends Fragment implements LoginInterface.View {
     TextView username;
@@ -67,7 +69,8 @@ public class LoginFragment extends Fragment implements LoginInterface.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new LoginPresenter(this);
+        presenter = new LoginPresenter(new SharedPrefHelper(MyApplication.getContext()));
+        presenter.attachView(this);
         presenter.checkLogin();
     }
 
