@@ -1,5 +1,5 @@
 # SharedShopper
-A simple app that enables two people to share a shopping list.
+A simple app that enables two or more people to share a shopping list.
 
 Created mainly for me to practice and demonstrate various techniques.
 
@@ -38,6 +38,7 @@ In future i will be adding/changing:
     <li>Maybe dagger to further utilise dependency injection.</li>
     <li>Further abstraction if necessary to make testing easier</li>
     <li>Better use of SOLID design principles</li>
+    <li>Create layouts to support tablets and smaller phones</li>
   </ul>
   
 Please see my 'ShoppingList' repository for a look at the local version of this app.
