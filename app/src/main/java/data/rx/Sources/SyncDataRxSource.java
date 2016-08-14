@@ -1,5 +1,6 @@
 package data.rx.Sources;
 
+
 import java.util.List;
 
 import data.api.ApiEndpointInterface;
@@ -19,47 +20,45 @@ public class SyncDataRxSource {
     ApiEndpointInterface apiEndpoint = retrofit.create(ApiEndpointInterface.class);
     ItemDBHelper db = new ItemDBHelper(MyApplication.getContext());
 
-    //TODO
-    //get db access off main thread
     public Observable<List<Item>> getOnlineAddObservable(){
-        final List<Item> uploadItems = db.getToUpload();
-        Observable<List<Item>> onlineAddObservable;
-
-        if(uploadItems.size() != 0){
-            Observable<Response<ResponseBody>> onlineSyncAdd = apiEndpoint.addItemListApi(uploadItems);
-
-            onlineAddObservable = onlineSyncAdd.subscribeOn(Schedulers.io())
-                    .map(new Func1<Response<ResponseBody>, List<Item>>() {
-                        @Override
-                        public List<Item> call(Response<ResponseBody> responseBodyResponse) {
-                            return null;
+        return Observable.just(db.getToUpload())
+                .subscribeOn(Schedulers.io())
+                .concatMap(new Func1<List<Item>, Observable<? extends List<Item>>>() {
+                    @Override
+                    public Observable<? extends List<Item>> call(List<Item> items) {
+                        if(items.size()!=0) {
+                           return apiEndpoint.addItemListApi(items)
+                                    .map(new Func1<Response<ResponseBody>, List<Item>>() {
+                                        @Override
+                                        public List<Item> call(Response<ResponseBody> responseBodyResponse) {
+                                            return null;
+                                        }
+                                    });
+                        }else{
+                            return Observable.empty();
                         }
-                    });
-        }else{
-            onlineAddObservable = Observable.empty();
-        }
-
-        return onlineAddObservable;
+                    }
+                });
     }
 
     public Observable<List<Item>> getDeletedLocalObservable(){
-        final List<Item> deletedLocalItems = db.getDeletedLocal();
-        Observable<List<Item>> onlineDeleteObservable;
-
-        if(deletedLocalItems.size() != 0) {
-            Observable<Response<ResponseBody>> onlineSyncDelete = apiEndpoint.deleteItemListApi(deletedLocalItems);
-
-            onlineDeleteObservable = onlineSyncDelete.subscribeOn(Schedulers.io())
-                    .map(new Func1<Response<ResponseBody>, List<Item>>() {
-                        @Override
-                        public List<Item> call(Response<ResponseBody> responseBodyResponse) {
-                            return null;
+        return Observable.just(db.getDeletedLocal())
+                .subscribeOn(Schedulers.io())
+                .concatMap(new Func1<List<Item>, Observable<? extends List<Item>>>() {
+                    @Override
+                    public Observable<? extends List<Item>> call(List<Item> items) {
+                        if(items.size()!=0) {
+                            return apiEndpoint.deleteItemListApi(items)
+                                    .map(new Func1<Response<ResponseBody>, List<Item>>() {
+                                        @Override
+                                        public List<Item> call(Response<ResponseBody> responseBodyResponse) {
+                                            return null;
+                                        }
+                                    });
+                        }else{
+                            return Observable.empty();
                         }
-                    });
-        }else {
-            onlineDeleteObservable = Observable.empty();
-        }
-
-        return onlineDeleteObservable;
+                    }
+                });
     }
 }
