@@ -17,10 +17,11 @@ public class LoginRepository implements LoginRepositoryInterface {
     LoginInterface.Presenter presenter;
     SharedPrefHelperInterface sharedPrefHelper;
 
-    public LoginRepository(LoginInterface.Presenter presenter){
+    public LoginRepository(LoginInterface.Presenter presenter, Interactor interactor,
+                           SharedPrefHelper sharedPrefHelper){
         this.presenter = presenter;
-        interactor = new Interactor();
-        sharedPrefHelper = new SharedPrefHelper(MyApplication.getContext());
+        this.interactor = interactor;
+        this.sharedPrefHelper = sharedPrefHelper;
     }
 
     @Override

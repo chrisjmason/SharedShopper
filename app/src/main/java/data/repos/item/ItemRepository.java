@@ -15,9 +15,9 @@ public class ItemRepository implements ItemRepositoryInterface {
     BasePresenterInterface presenter;
     Interactor interactor;
 
-    public ItemRepository(BasePresenterInterface presenter){
+    public ItemRepository(BasePresenterInterface presenter, Interactor interactor){
         this.presenter = presenter;
-        interactor = new Interactor();
+        this.interactor = interactor;
     }
 
     @Override
