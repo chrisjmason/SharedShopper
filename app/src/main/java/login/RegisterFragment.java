@@ -57,7 +57,6 @@ public class RegisterFragment extends Fragment implements LoginInterface.View {
                 }
             }
         });
-
         return root;
     }
 

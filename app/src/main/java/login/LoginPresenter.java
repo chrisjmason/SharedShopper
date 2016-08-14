@@ -55,7 +55,6 @@ public class LoginPresenter implements LoginInterface.Presenter {
         }else{
             repository.registerUser(new User(username, password, null, null));
         }
-
     }
 
     @Override

@@ -62,7 +62,6 @@ public class LoginFragment extends Fragment implements LoginInterface.View {
                 activity.goToRegister();
             }
         });
-
         return root;
     }
 

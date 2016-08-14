@@ -9,8 +9,6 @@ public interface LoginInterface {
         void loginOk();
         void loginBad(String reason);
         void attachView(LoginInterface.View view);
-        void detachView();
-
     }
 
     interface View{
