@@ -46,12 +46,7 @@ public class LoginFragment extends Fragment implements LoginInterface.View {
             public void onClick(View v) {
                 String usernameText = username.getText().toString();
                 String passwordText = password.getText().toString();
-
-                if(usernameText!="" && passwordText!= ""){
-                    presenter.login(usernameText,passwordText);
-                }else{
-                    createToast("Please enter username and password");
-                }
+                presenter.login(usernameText,passwordText);
             }
         });
 
