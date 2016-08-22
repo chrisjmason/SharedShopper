@@ -9,6 +9,7 @@ External dependencies used:
     <li>RetroFit</li>
     <li>OkHttp</li>
     <li>Espresso</li>
+    <li>Mockito</li>
   </ul>
 
 For the app I have used the model view presenter (MVP) design pattern with elements of Clean architecture.
@@ -33,7 +34,7 @@ The Presenter layer receives user input information from the View, calls the nec
 <h3>Things to add/change</h3>
 In future i will be adding/changing:
   <ul>
-    <li>More tests, both unit tests and instrumentation tests perhaps utilising the Mockito library.</li>
+    <li>I am currently adding unit tests using Mockito</li>
     <li>Retrolambda, to reduce boilerplate code when using RxJava and other anonymous class usage.</li>
     <li>Maybe dagger to further utilise dependency injection.</li>
     <li>Further abstraction if necessary to make testing easier</li>
