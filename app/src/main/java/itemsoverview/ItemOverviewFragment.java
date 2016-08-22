@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import com.sharedshopper.chris.sharedshopper.Injector;
 import com.sharedshopper.chris.sharedshopper.R;
 
 import java.util.List;

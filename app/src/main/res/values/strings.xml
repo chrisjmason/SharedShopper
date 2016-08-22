@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SharedShopper</string>
     <string name="share_text">Enter another SharedShopper user\'s share code here to start sharing your Lists!</string>
+    <string name="empty_text">Click add to start your list!</string>
 </resources>

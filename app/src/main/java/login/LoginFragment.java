@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.sharedshopper.chris.sharedshopper.R;
 
+import data.repos.login.LoginRepository;
 import data.sharedpref.SharedPrefHelper;
 import itemsoverview.ItemOverviewActivity;
 import utility.MyApplication;

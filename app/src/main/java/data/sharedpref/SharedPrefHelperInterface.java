@@ -6,4 +6,5 @@ public interface SharedPrefHelperInterface {
     String getApikey();
     String getDataid();
     void clearData();
+    boolean checkSharedPref();
 }

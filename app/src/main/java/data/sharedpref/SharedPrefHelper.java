@@ -47,7 +47,8 @@ public class SharedPrefHelper implements SharedPrefHelperInterface {
         editor.commit();
     }
 
-    public Boolean checkSharedPref(){
+    @Override
+    public boolean checkSharedPref(){
         String apikey = getApikey();
         String dataid = getDataid();
 

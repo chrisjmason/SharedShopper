@@ -4,15 +4,16 @@ import data.repos.login.LoginRepository;
 import data.repos.login.LoginRepositoryInterface;
 import data.rx.Interactor;
 import data.sharedpref.SharedPrefHelper;
+import data.sharedpref.SharedPrefHelperInterface;
 import utility.MyApplication;
 import utility.pojo.User;
 
 public class LoginPresenter implements LoginInterface.Presenter {
     LoginInterface.View view;
     LoginRepositoryInterface repository;
-    SharedPrefHelper sharedPrefHelper;
+    SharedPrefHelperInterface sharedPrefHelper;
 
-    public LoginPresenter(SharedPrefHelper sharedPrefHelper){
+    public LoginPresenter(SharedPrefHelperInterface sharedPrefHelper){
         this.sharedPrefHelper = sharedPrefHelper;
     }
 
@@ -20,11 +21,6 @@ public class LoginPresenter implements LoginInterface.Presenter {
     public void attachView(LoginInterface.View view) {
         this.view = view;
         repository = new LoginRepository(this, new Interactor(),sharedPrefHelper );
-    }
-
-    @Override
-    public void detachView() {
-        view = null;
     }
 
     @Override

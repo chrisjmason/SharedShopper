@@ -18,7 +18,7 @@ public class LoginRepository implements LoginRepositoryInterface {
     SharedPrefHelperInterface sharedPrefHelper;
 
     public LoginRepository(LoginInterface.Presenter presenter, Interactor interactor,
-                           SharedPrefHelper sharedPrefHelper){
+                           SharedPrefHelperInterface sharedPrefHelper){
         this.presenter = presenter;
         this.interactor = interactor;
         this.sharedPrefHelper = sharedPrefHelper;

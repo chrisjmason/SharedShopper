@@ -1,6 +1,8 @@
-package com.sharedshopper.chris.sharedshopper;
+package com.sharedshopper.chris.sharedshopper.pojotests;
 
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.sharedshopper.chris.sharedshopper.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.sharedshopper.chris.sharedshopper;
+package com.sharedshopper.chris.sharedshopper.pojotests;
 
 import android.test.suitebuilder.annotation.SmallTest;
 

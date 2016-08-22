@@ -9,7 +9,7 @@ import utility.pojo.Item;
 public class ItemOverviewPresenter implements ItemOverviewInterface.Presenter, BasePresenterInterface{
 
     private ItemRepositoryInterface itemRepository;
-    ItemOverviewInterface.View view;
+    private ItemOverviewInterface.View view;
 
     public ItemOverviewPresenter(ItemOverviewInterface.View view) {
         this.view = view;
