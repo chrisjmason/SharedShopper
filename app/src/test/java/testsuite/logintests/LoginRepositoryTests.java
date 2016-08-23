@@ -68,6 +68,7 @@ public class LoginRepositoryTests {
         verify(presenter).loginBad(FAILURE_STRING);
     }
 
+    @Test
     public void login_Error(){
         when(interactor.getLoginObservable(user)).thenReturn(testObsError);
         loginRepository.loginUser(user);
