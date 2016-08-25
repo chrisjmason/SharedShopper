@@ -23,7 +23,6 @@ import rx.Observable;
 import rx.schedulers.Schedulers;
 import utility.BasePresenterInterface;
 import utility.pojo.Item;
-import utility.pojo.User;
 import utility.util.CodeUtil;
 import utility.util.DateUtil;
 
