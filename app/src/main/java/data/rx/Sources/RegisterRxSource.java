@@ -5,6 +5,8 @@ import data.api.responsepojo.LoginResponse;
 import data.api.RetrofitProvider;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import utility.pojo.User;
 
 public class RegisterRxSource {
@@ -12,6 +14,8 @@ public class RegisterRxSource {
     ApiEndpointInterface apiEndpoint = retrofit.create(ApiEndpointInterface.class);
 
     public Observable<LoginResponse> registerObservable(User user){
-        return apiEndpoint.registerUser(user);
+        return apiEndpoint.registerUser(user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

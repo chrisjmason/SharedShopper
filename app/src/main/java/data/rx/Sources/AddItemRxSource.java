@@ -9,7 +9,9 @@ import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import utility.pojo.Item;
 import utility.MyApplication;
 
@@ -21,6 +23,8 @@ public class AddItemRxSource {
     public Observable<List<Item>> getAddObservable(final Item itemToAdd){
 
         return apiEndpoint.addItemApi(itemToAdd)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(new Func1<Response<ResponseBody>, List<Item>>() {
                     @Override
                     public List<Item> call(Response<ResponseBody> responseBodyResponse) {

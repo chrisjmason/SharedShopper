@@ -8,7 +8,9 @@ import data.api.RetrofitProvider;
 import data.db.ItemDBHelper;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import utility.pojo.Item;
 import utility.MyApplication;
 
@@ -20,6 +22,8 @@ public class GetListRxSource {
 
     public Observable<List<Item>> getListObservable(){
         return apiEndpoint.getItemList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(new Func1<ItemListResponse, List<Item>>() {
                     @Override
                     public List<Item> call(ItemListResponse itemListResponse) {
