@@ -37,6 +37,7 @@ public class LoginRepositoryTests {
     SharedPrefHelperInterface sharedPref;
 
     private LoginRepositoryInterface loginRepository;
+
     User user = new User(USERNAME,PASSWORD,APIKEY,DATAID);
 
     Observable<LoginResponse> testObsSuccess = Observable.just(new LoginResponse(false,SUCCESS_STRING,APIKEY,DATAID))
