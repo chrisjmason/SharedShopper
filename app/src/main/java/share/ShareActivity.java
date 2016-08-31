@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.sharedshopper.chris.sharedshopper.R;
 
+import data.repos.share.ShareRepository;
+import data.rx.Interactor;
 import itemsoverview.ItemOverviewActivity;
 
 public class ShareActivity extends Activity implements ShareInterface.View {
@@ -20,7 +22,7 @@ public class ShareActivity extends Activity implements ShareInterface.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
 
-        presenter = new SharePresenter(this);
+        presenter = new SharePresenter(this, new ShareRepository(new Interactor()));
         Button button = (Button) findViewById(R.id.share_button);
         final TextView newCodeView = (TextView) findViewById(R.id.share_code_text);
 

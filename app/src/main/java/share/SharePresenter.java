@@ -5,21 +5,22 @@ import data.repos.share.ShareRepositoryInterface;
 
 public class SharePresenter implements ShareInterface.Presenter {
     ShareInterface.View view;
-    ShareRepositoryInterface repository;
+    ShareRepositoryInterface repository = null;
 
-    public SharePresenter(ShareInterface.View view){
+    public SharePresenter(ShareInterface.View view, ShareRepositoryInterface repository){
         this.view = view;
-        repository = new ShareRepository(this);
+        this.repository = repository;
+        repository.attachPresenter(this);
     }
 
     @Override
     public void updateCode(String newCode) {
-        repository.changeShareCode(newCode);
+        if(repository!=null) repository.changeShareCode(newCode);
     }
 
     @Override
     public void codeChanged() {
-        view.codeChanged();
+         view.codeChanged();
     }
 
     @Override

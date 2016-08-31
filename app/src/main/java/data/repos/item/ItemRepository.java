@@ -24,9 +24,7 @@ public class ItemRepository implements ItemRepositoryInterface {
     public void getData() {
         Observable<List<Item>> getDataObservable = interactor.getListFinalObservable();
 
-        getDataObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Item>>() {
+        getDataObservable.subscribe(new Subscriber<List<Item>>() {
                     @Override
                     public void onCompleted() {}
 
@@ -69,9 +67,7 @@ public class ItemRepository implements ItemRepositoryInterface {
     public void addItem(String title, String desc, int colour) {
         Observable<List<Item>> getAddObservable = interactor.addItemFinalObservable(title, desc, colour);
 
-        getAddObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Item>>() {
+        getAddObservable.subscribe(new Subscriber<List<Item>>() {
                     @Override
                     public void onCompleted() {
 
@@ -95,9 +91,7 @@ public class ItemRepository implements ItemRepositoryInterface {
     public void deleteItem(int position) {
         Observable<List<Item>> getDeleteObservable = interactor.deleteItemFinalObservable(position);
 
-        getDeleteObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Item>>() {
+        getDeleteObservable.subscribe(new Subscriber<List<Item>>() {
                     @Override
                     public void onCompleted() {
 
@@ -121,10 +115,8 @@ public class ItemRepository implements ItemRepositoryInterface {
     public void getItem(int position) {
 
         Observable<Item> getItemObservable = interactor.getItemFinalObservable(position);
-        getItemObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Item>() {
+
+        getItemObservable.subscribe(new Subscriber<Item>() {
                     @Override
                     public void onCompleted() {
 
@@ -132,7 +124,7 @@ public class ItemRepository implements ItemRepositoryInterface {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        presenter.showToast("Item not found");
                     }
 
                     @Override

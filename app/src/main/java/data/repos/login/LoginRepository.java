@@ -28,9 +28,7 @@ public class LoginRepository implements LoginRepositoryInterface {
     public void registerUser(User user) {
         Observable<LoginResponse> registerObservable = interactor.getRegisterObservable(user);
 
-        registerObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<LoginResponse>() {
+        registerObservable.subscribe(new Subscriber<LoginResponse>() {
                     @Override
                     public void onCompleted() {
 
@@ -39,7 +37,7 @@ public class LoginRepository implements LoginRepositoryInterface {
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        presenter.loginBad("rx error");
+                        presenter.loginBad("Error, please try again.");
                     }
 
                     @Override
@@ -58,9 +56,7 @@ public class LoginRepository implements LoginRepositoryInterface {
     public void loginUser(User user) {
         Observable<LoginResponse> loginObservable = interactor.getLoginObservable(user);
 
-        loginObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<LoginResponse>() {
+        loginObservable.subscribe(new Subscriber<LoginResponse>() {
                     @Override
                     public void onCompleted() {
 
@@ -68,7 +64,7 @@ public class LoginRepository implements LoginRepositoryInterface {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        presenter.loginBad("Error, please try again.");
                     }
 
                     @Override

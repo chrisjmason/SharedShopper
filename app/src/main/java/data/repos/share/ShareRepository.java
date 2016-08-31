@@ -12,14 +12,19 @@ import utility.MyApplication;
 
 public class ShareRepository implements ShareRepositoryInterface {
     ShareInterface.Presenter presenter;
+    Interactor interactor;
 
-    public ShareRepository(ShareInterface.Presenter presenter) {
+    public ShareRepository(Interactor interactor){
+        this.interactor = interactor;
+    }
+
+    @Override
+    public void attachPresenter(ShareInterface.Presenter presenter){
         this.presenter = presenter;
     }
 
     @Override
     public void changeShareCode(String newCode) {
-        Interactor interactor = new Interactor();
         Observable<LoginResponse> shareCodeObservable = interactor.getShareObservable(newCode);
 
         shareCodeObservable.subscribeOn(Schedulers.io())
