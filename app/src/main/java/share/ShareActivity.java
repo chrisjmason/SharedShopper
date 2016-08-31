@@ -12,7 +12,9 @@ import com.sharedshopper.chris.sharedshopper.R;
 
 import data.repos.share.ShareRepository;
 import data.rx.Interactor;
+import data.sharedpref.SharedPrefHelper;
 import itemsoverview.ItemOverviewActivity;
+import utility.MyApplication;
 
 public class ShareActivity extends Activity implements ShareInterface.View {
     ShareInterface.Presenter presenter;
@@ -22,7 +24,9 @@ public class ShareActivity extends Activity implements ShareInterface.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
 
-        presenter = new SharePresenter(this, new ShareRepository(new Interactor()));
+        ShareRepository shareRepository = new ShareRepository(new Interactor(), new SharedPrefHelper(MyApplication.getContext()));
+        presenter = new SharePresenter(this,shareRepository);
+
         Button button = (Button) findViewById(R.id.share_button);
         final TextView newCodeView = (TextView) findViewById(R.id.share_code_text);
 

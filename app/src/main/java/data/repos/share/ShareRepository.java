@@ -13,9 +13,11 @@ import utility.MyApplication;
 public class ShareRepository implements ShareRepositoryInterface {
     ShareInterface.Presenter presenter;
     Interactor interactor;
+    SharedPrefHelper sharedPrefHelper;
 
-    public ShareRepository(Interactor interactor){
+    public ShareRepository(Interactor interactor, SharedPrefHelper sharedPrefHelper){
         this.interactor = interactor;
+        this.sharedPrefHelper = sharedPrefHelper;
     }
 
     @Override
@@ -27,9 +29,7 @@ public class ShareRepository implements ShareRepositoryInterface {
     public void changeShareCode(String newCode) {
         Observable<LoginResponse> shareCodeObservable = interactor.getShareObservable(newCode);
 
-        shareCodeObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<LoginResponse>() {
+        shareCodeObservable.subscribe(new Subscriber<LoginResponse>() {
                     @Override
                     public void onCompleted() {
 
@@ -46,7 +46,6 @@ public class ShareRepository implements ShareRepositoryInterface {
                         if(loginResponse.getError()){
                             presenter.codeNotChanged(loginResponse.getMessage());
                         }else{
-                            SharedPrefHelper sharedPrefHelper = new SharedPrefHelper(MyApplication.getContext());
                             sharedPrefHelper.storeDataid(loginResponse.getDataid());
                             presenter.codeChanged();
                         }

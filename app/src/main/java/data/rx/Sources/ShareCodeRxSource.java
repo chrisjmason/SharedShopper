@@ -5,6 +5,8 @@ import data.api.responsepojo.LoginResponse;
 import data.api.RetrofitProvider;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import utility.pojo.DataId;
 
 public class ShareCodeRxSource {
@@ -12,6 +14,8 @@ public class ShareCodeRxSource {
     ApiEndpointInterface apiEndpoint = retrofit.create(ApiEndpointInterface.class);
 
     public Observable<LoginResponse> shareCodeObservable(String newCode){
-        return apiEndpoint.changeDataid(new DataId(newCode));
+        Observable<LoginResponse> shareObs = apiEndpoint.changeDataid(new DataId(newCode));
+        return shareObs.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
